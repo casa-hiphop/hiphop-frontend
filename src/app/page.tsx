@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, BarChart3, Clock, Shield } from "lucide-react";
 import Image from "next/image";
-import logo from "@/app/assets/logo.png";
+import logo_casa_do_hip_hop from "@/app/assets/logo_casa_do_hip_hop.png";
 
 export default function Landing() {
   return (
@@ -10,24 +10,28 @@ export default function Landing() {
       {/* Header */}
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Image src={logo} alt="Logo" height={40} className="h-10 w-auto" />
+          <Image
+            src={logo_casa_do_hip_hop}
+            alt="Logo"
+            height={80}
+            className="h-20 w-auto"
+          />
           <nav className="hidden md:flex items-center gap-6">
             <a
               href="#features"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-md text-black hover:text-foreground  transition-colors"
             >
-              Features
+              Como Funciona
             </a>
             <a
               href="#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="text-md text-black hover:text-foreground transition-colors"
             >
-              How It Works
+              Venha fazer parte
             </a>
-            <Button variant="outline" size="sm">
-              Sign In
+            <Button variant="outline" size="lg">
+              Entrar
             </Button>
-            <Button size="sm">Get Started</Button>
           </nav>
         </div>
       </header>
@@ -36,74 +40,73 @@ export default function Landing() {
       <section className="container mx-auto px-4 py-20 md:py-32">
         <div className="max-w-3xl mx-auto text-center space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold text-balance">
-            Aqui podemos colocar qualquer coisa
+            Casa do Hip Hop Ferramentoteca
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground text-balance">
-            A compelling description of what your product does and how it helps
-            your customers achieve their goals.
+            Emprestamos ferramentas para quem precisa, fortalecendo a
+            colaboração e reduzindo gastos na comunidade
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="text-base">
-              Get Started
-            </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="text-base bg-transparent"
+              className="text-base bg-red-600 hover hover-white"
             >
-              Watch Demo
+              Quero Emprestar Ferramentas
+            </Button>
+            <Button size="lg" variant="outline" className="text-white bg-black">
+              Quero Devolver / Consultar Empréstimos
             </Button>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section
-        id="features"
-        className="container mx-auto px-4 py-20 bg-muted/30"
-      >
+      <section id="features" className="container mx-auto px-4 py-20 bg-black ">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Key Features
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-amber-100 mb-12">
+            Como Funciona
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="p-6 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <BarChart3 className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Feature One</h3>
+              <h3 className="font-semibold text-lg">Escolha sua ferramenta</h3>
               <p className="text-sm text-muted-foreground">
-                Description of your first key feature and how it benefits users
+                Consulte nossa ferramentoteca com os itens
               </p>
             </Card>
 
             <Card className="p-6 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Clock className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center">
+                <Clock className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Feature Two</h3>
+              <h3 className="font-semibold text-lg">Solicite o empréstimo</h3>
               <p className="text-sm text-muted-foreground">
-                Description of your second key feature and its value proposition
+                Escolha as ferramentas dentre as disponiveis
               </p>
             </Card>
 
             <Card className="p-6 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Shield className="w-6 h-6 text-primary" />
+              <div className="w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center">
+                <Shield className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Feature Three</h3>
+              <h3 className="font-semibold text-lg">
+                Retire no local combinado
+              </h3>
               <p className="text-sm text-muted-foreground">
-                Description of your third key feature and why it matters
+                Retire o item no local combinado e caso necessário peça
+                orientações de uso
               </p>
             </Card>
 
             <Card className="p-6 space-y-4">
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6 text-primary" />
+              <div className=" w-12 h-12 rounded-lg bg-red-600 flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6 text-white " />
               </div>
-              <h3 className="font-semibold text-lg">Feature Four</h3>
+              <h3 className="font-semibold text-lg">Devolva no prazo</h3>
               <p className="text-sm text-muted-foreground">
-                Description of your fourth key feature and its impact
+                Assim todos podem usar e manter o ciclo funcionando
               </p>
             </Card>
           </div>
@@ -114,41 +117,47 @@ export default function Landing() {
       <section id="how-it-works" className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            How It Works
+            Benefícios para a Comunidade
           </h2>
           <div className="space-y-8">
             <div className="flex gap-6 items-start">
-              <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-600 text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
                 1
               </div>
               <div>
-                <h3 className="font-semibold text-xl mb-2">Step One Title</h3>
+                <h3 className="font-semibold text-xl mb-2">
+                  Integração social
+                </h3>
                 <p className="text-muted-foreground">
-                  Description of the first step in your process
+                  O ponto de retirada se torna um local de convivência, troca de
+                  experiências e apoio mútuo.
                 </p>
               </div>
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-600 text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
                 2
               </div>
               <div>
-                <h3 className="font-semibold text-xl mb-2">Step Two Title</h3>
+                <h3 className="font-semibold text-xl mb-2">Organização</h3>
                 <p className="text-muted-foreground">
-                  Description of the second step in your process
+                  O sistema de empréstimo cria um fluxo controlado e
+                  transparente, garantindo que tudo seja devolvido no prazo e
+                  mantido em boas condições.
                 </p>
               </div>
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-600 text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
                 3
               </div>
               <div>
-                <h3 className="font-semibold text-xl mb-2">Step Three Title</h3>
+                <h3 className="font-semibold text-xl mb-2">Empoderamento</h3>
                 <p className="text-muted-foreground">
-                  Description of the final step in your process
+                  Com ferramentas acessíveis, a comunidade conquista autonomia
+                  para reformar, construir e realizar pequenos reparos.
                 </p>
               </div>
             </div>
@@ -157,43 +166,43 @@ export default function Landing() {
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20 bg-muted/30">
+      <section className="container mx-auto px-4 py-20 bg-red-600">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Ready to Get Started?
+          <h2 className="text-3xl md:text-4xl text-white font-bold">
+            Vamos construir juntos uma comunidade mais forte e melhor para todos
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Start your free trial today and see the difference for yourself
+          <p className="text-lg text-gray-100">
+            Compartilhe, economize e ajude o próximo
           </p>
-          <Button size="lg" className="text-base">
-            Create Free Account
+          <Button size="lg" className="text-base bg-white text-">
+            Participar da Ferramentoteca
           </Button>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              © 2025 Brand Name. All rights reserved.
+        <div className="container mx-auto px-4 py-8 bg-black">
+          <div className="flex flex-col md:flex-row justify-between items-center text-white gap-4">
+            <div className="text-sm  text-white">
+              © 2025 Ferramentoteca Casa do Hip Hop. All rights reserved.
             </div>
             <div className="flex gap-6">
               <a
                 href="#"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-white hover:text-foreground transition-colors"
               >
                 Privacy
               </a>
               <a
                 href="#"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-white hover:text-foreground transition-colors"
               >
                 Terms
               </a>
               <a
                 href="#"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-white hover:text-foreground transition-colors"
               >
                 Contact
               </a>
