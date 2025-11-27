@@ -1,10 +1,15 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, BarChart3, Clock, Shield } from "lucide-react";
 import Image from "next/image";
 import logo_casa_do_hip_hop from "@/app/assets/logo_casa_do_hip_hop.png";
+import {useRouter} from "next/navigation";
 
 export default function Landing() {
+
+  const router = useRouter()
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -29,7 +34,7 @@ export default function Landing() {
             >
               Venha fazer parte
             </a>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={() => router.push("/login")}>
               Entrar
             </Button>
           </nav>
