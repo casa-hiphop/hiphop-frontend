@@ -123,7 +123,12 @@
 }
 
 .animated-gradient {
-  background: linear-gradient(270deg, var(--primary), var(--chart-2), var(--chart-4));
+  background: linear-gradient(
+    270deg,
+    var(--primary),
+    var(--chart-2),
+    var(--chart-4)
+  );
   background-size: 600% 600%;
   animation: gradientMove 10s ease infinite;
 }
