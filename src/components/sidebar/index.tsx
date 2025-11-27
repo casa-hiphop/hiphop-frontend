@@ -29,6 +29,11 @@ export const menus: IDrawerOption[] = [
     url: "/dashboard",
     icon: Home,
   },
+  {
+    title: "Solicitantes",
+    url: "/dashboard/solicitantes",
+    icon: Home,
+  },
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

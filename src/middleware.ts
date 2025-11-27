@@ -10,6 +10,8 @@ export const publicRoutes: IPublicRoutes[] = [
   { path: "/register", whenAuthenticated: "redirect" },
   { path: "/forget-password", whenAuthenticated: "redirect" },
   { path: "/reset-password", whenAuthenticated: "next" },
+  // Temporário: liberar acesso ao dashboard sem login
+  { path: "/dashboard", whenAuthenticated: "next" },
 ]
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = "/login"
@@ -18,6 +20,7 @@ const REDIRECT_WHEN_AUTHENTICATED_ROUTE = "/dashboard"
 export function middleware(req: NextRequest) {
   const rawPath = req.nextUrl.pathname
   const path = rawPath.replace(/\/+$/, "") || "/"
+
 
   const token = req.cookies.get("token")?.value || null
   const isAuthenticated = Boolean(token)
