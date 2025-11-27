@@ -4,6 +4,7 @@ import * as React from "react"
 import {
   Home,
   LucideProps,
+  ToolCase,
 } from "lucide-react"
 
 import {
@@ -28,6 +29,11 @@ export const menus: IDrawerOption[] = [
     title: "Dashboard",
     url: "/dashboard",
     icon: Home,
+  },
+  {
+    title: "Ferramentas",
+    url: "/tool-register",
+    icon: ToolCase,
   },
 ]
 
