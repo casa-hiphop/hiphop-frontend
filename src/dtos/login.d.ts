@@ -1,10 +1,9 @@
 export interface IUserLogged {
-  id: string,
-  name: string,
-  email: string,
-  avatar: string | null,
-  status: boolean,
-  created_at: string,
-  updated_at: string | null,
-  custom_link_slug: string
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    status: boolean;
+  };
+  token: string;
 }

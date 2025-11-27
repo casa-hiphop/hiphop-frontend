@@ -2,8 +2,7 @@ import { IUserLogged } from "@/dtos/login"
 import { Fetcher, IResponse } from "."
 
 export interface AuthApiInterface {
-  login(email: string, password: string): Promise<IResponse<IUserLogged>>
-  logout(): Promise<IResponse>
+  login(email: string, password: string): Promise<IUserLogged>
   forgetPassword(email: string): Promise<IResponse>
   resetPassword(password: string, token: string): Promise<IResponse>
   register(name: string, email: string, password: string): Promise<IResponse>
@@ -17,8 +16,8 @@ export class AuthApi implements AuthApiInterface {
   }
 
   async login(email: string, password: string) {
-    return this.fetcher<IResponse<IUserLogged>>({
-      url: '/auth/login',
+    return this.fetcher<IUserLogged>({
+      url: '/login',
       method: 'POST',
       body: { email, password },
     })
@@ -26,7 +25,7 @@ export class AuthApi implements AuthApiInterface {
 
   async register(name: string, email: string, password: string) {
     return this.fetcher<IResponse<IUserLogged>>({
-      url: '/auth/register',
+      url: '/users',
       method: 'POST',
       body: { name, email, password },
     })
@@ -34,7 +33,7 @@ export class AuthApi implements AuthApiInterface {
 
   async forgetPassword(email: string) {
     return this.fetcher<IResponse>({
-      url: '/auth/forget-password',
+      url: '/forgot-password',
       method: 'POST',
       body: { email },
     })
@@ -42,16 +41,9 @@ export class AuthApi implements AuthApiInterface {
 
   async resetPassword(password: string, token: string) {
     return this.fetcher<IResponse>({
-      url: `/auth/reset-password/${token}`,
+      url: `/reset-password/${token}`,
       method: 'PATCH',
       body: { password },
-    })
-  }
-
-  async logout() {
-    return this.fetcher<IResponse>({
-      url: '/auth/logout',
-      method: 'POST',
     })
   }
 }
