@@ -5,7 +5,8 @@ import {
   Home,
   LucideProps,
   ToolCase,
-  SquaresUnite
+  SquaresUnite,
+  BrickWallFire
 } from "lucide-react"
 
 import {
@@ -45,6 +46,11 @@ export const menus: IDrawerOption[] = [
     title: "Unidades",
     url: "/unidades",
     icon: SquaresUnite,
+  },
+  {
+    title: "Empréstimos",
+    url: "/emprestimo",
+    icon: BrickWallFire,
   },
 ]
 
