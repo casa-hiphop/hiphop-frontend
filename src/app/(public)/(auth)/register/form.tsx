@@ -52,7 +52,7 @@ export function RegisterForm({
   }: RegisterFormData) => {
     try {
       await api.auth.register(name, email, password)
-      const user = await login(email, password)
+      const { user } = await login(email, password)
       router.push('/dashboard')
 
       showToast('success', { title: `Bem-vindo(a), ${user.name}` })
