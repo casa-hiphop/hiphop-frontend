@@ -3,7 +3,7 @@
 import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar"
 import Link from "next/link"
 import React, { useEffect } from "react"
-import { menus } from "."
+import { menus } from "./index"
 import { usePathname } from "next/navigation"
 
 export default function SidebarContentContent() {

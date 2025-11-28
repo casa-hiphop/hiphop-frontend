@@ -1,7 +1,5 @@
 "use client"
 
-import { Header } from "@/components/header"
-import { Sidebar } from "@/components/sidebar"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -19,7 +17,6 @@ type Unidade = {
 }
 
 export default function UnidadesPage() {
-  const [currentPage, setCurrentPage] = useState("Unidades")
   const [searchTerm, setSearchTerm] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingId, setEditingId] = useState<number | null>(null)
@@ -83,11 +80,8 @@ export default function UnidadesPage() {
   }
 
   return (
-    <div className="flex h-screen bg-background">
-      <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
-
+    <div className="flex bg-background">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
         <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Header Section */}

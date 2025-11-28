@@ -3,8 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Sidebar } from "@/components/sidebar"
-import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -24,7 +22,6 @@ type Solicitante = {
 }
 
 export default function SolicitantesPage() {
-  const [currentPage, setCurrentPage] = useState("Solicitantes")
   const [searchTerm, setSearchTerm] = useState("")
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingId, setEditingId] = useState<number | null>(null)
@@ -66,26 +63,6 @@ export default function SolicitantesPage() {
       cargo: "Supervisor",
       emprestimosAtivos: 0,
       totalEmprestimos: 22,
-    },
-    {
-      id: 4,
-      nome: "Ana Oliveira",
-      email: "ana.oliveira@empresa.com",
-      telefone: "(21) 98765-1234",
-      unidade: "Unidade Rio de Janeiro",
-      cargo: "Coordenadora",
-      emprestimosAtivos: 3,
-      totalEmprestimos: 31,
-    },
-    {
-      id: 5,
-      nome: "Carlos Pereira",
-      email: "carlos.pereira@empresa.com",
-      telefone: "(11) 97654-3210",
-      unidade: "Unidade Belo Horizonte",
-      cargo: "Operador",
-      emprestimosAtivos: 1,
-      totalEmprestimos: 12,
     },
   ])
 
@@ -145,12 +122,8 @@ export default function SolicitantesPage() {
   }
 
   return (
-    <div className="flex h-screen bg-background">
-      <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
-
+    <div className="flex bg-background">
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
-
         <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Header Section */}
@@ -300,7 +273,7 @@ export default function SolicitantesPage() {
                       <tr key={solicitante.id} className="hover:bg-muted">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
                               {solicitante.nome
                                 .split(" ")
                                 .map((n) => n[0])
@@ -369,29 +342,9 @@ export default function SolicitantesPage() {
                 )}
               </div>
             </Card>
-
-            {/* Stats Summary */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Card className="p-4 bg-card">
-                <div className="text-sm text-muted-foreground">Total de Solicitantes</div>
-                <div className="text-2xl font-bold text-foreground mt-1">{solicitantes.length}</div>
-              </Card>
-              <Card className="p-4 bg-card">
-                <div className="text-sm text-muted-foreground">Com Empréstimos Ativos</div>
-                <div className="text-2xl font-bold text-primary mt-1">
-                  {solicitantes.filter((s) => s.emprestimosAtivos > 0).length}
-                </div>
-              </Card>
-              <Card className="p-4 bg-card">
-                <div className="text-sm text-muted-foreground">Total de Empréstimos</div>
-                <div className="text-2xl font-bold text-foreground mt-1">
-                  {solicitantes.reduce((acc, s) => acc + s.totalEmprestimos, 0)}
-                </div>
-              </Card>
-            </div>
           </div>
         </main>
+        </div>
       </div>
-    </div>
   )
 }

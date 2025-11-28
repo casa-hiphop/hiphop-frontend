@@ -36,7 +36,7 @@ export function StatsCards() {
         const Icon = stat.icon
 
         return (
-          <Card key={stat.title} className="p-6 hover:shadow-lg transition-shadow">
+          <Card key={stat.title} className="p-5 hover:shadow-lg transition-shadow">
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <p className="text-sm font-medium text-muted-foreground mb-2">{stat.title}</p>

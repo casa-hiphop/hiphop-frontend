@@ -5,6 +5,7 @@ import {
   Home,
   LucideProps,
   ToolCase,
+  SquaresUnite
 } from "lucide-react"
 
 import {
@@ -32,13 +33,18 @@ export const menus: IDrawerOption[] = [
   },
   {
     title: "Solicitantes",
-    url: "/dashboard/solicitantes",
+    url: "/solicitantes",
     icon: Home,
   },
   {
     title: "Ferramentas",
-    url: "/tool-register",
+    url: "/ferramentas",
     icon: ToolCase,
+  },
+  {
+    title: "Unidades",
+    url: "/unidades",
+    icon: SquaresUnite,
   },
 ]
 
