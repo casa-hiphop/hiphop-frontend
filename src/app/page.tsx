@@ -19,13 +19,13 @@ export default function Landing() {
           <nav className="hidden md:flex items-center gap-6">
             <a
               href="#features"
-              className="text-md text-black hover:text-foreground  transition-colors"
+              className="text-md text-muted-foreground hover:text-foreground  transition-colors"
             >
               Como Funciona
             </a>
             <a
               href="#how-it-works"
-              className="text-md text-black hover:text-foreground transition-colors"
+              className="text-md text-muted-foreground hover:text-foreground transition-colors"
             >
               Venha fazer parte
             </a>
@@ -49,11 +49,15 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button
               size="lg"
-              className="text-base bg-red-600 hover hover-white"
+              className="text-base bg-red-600  hover:bg-red-500"
             >
               Quero Emprestar Ferramentas
             </Button>
-            <Button size="lg" variant="outline" className="text-white bg-black">
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-white bg-black hover:bg-gray-300"
+            >
               Quero Devolver / Consultar Empréstimos
             </Button>
           </div>
@@ -174,7 +178,10 @@ export default function Landing() {
           <p className="text-lg text-gray-100">
             Compartilhe, economize e ajude o próximo
           </p>
-          <Button size="lg" className="text-base bg-white text-">
+          <Button
+            size="lg"
+            className="text-base hover:bg-gray-200 bg-white text-black"
+          >
             Participar da Ferramentoteca
           </Button>
         </div>
@@ -185,26 +192,27 @@ export default function Landing() {
         <div className="container mx-auto px-4 py-8 bg-black">
           <div className="flex flex-col md:flex-row justify-between items-center text-white gap-4">
             <div className="text-sm  text-white">
-              © 2025 Ferramentoteca Casa do Hip Hop. All rights reserved.
+              © 2025 Ferramentoteca Casa do Hip Hop. Todos os direitos
+              reservados.
             </div>
             <div className="flex gap-6">
               <a
                 href="#"
                 className="text-sm text-white hover:text-foreground transition-colors"
               >
-                Privacy
+                Privacidade
               </a>
               <a
                 href="#"
                 className="text-sm text-white hover:text-foreground transition-colors"
               >
-                Terms
+                Termos
               </a>
               <a
                 href="#"
                 className="text-sm text-white hover:text-foreground transition-colors"
               >
-                Contact
+                Contatos
               </a>
             </div>
           </div>

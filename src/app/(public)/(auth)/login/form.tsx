@@ -1,55 +1,55 @@
-'use client'
+"use client";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { validationErrors } from "@/utils/validation-errors"
-import React from "react"
-import { FormInput } from "@/components/react-hook-form/form.input"
-import Link from "next/link"
-import { useAuth } from "@/contexts/auth"
-import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/toast"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { validationErrors } from "@/utils/validation-errors";
+import React from "react";
+import { FormInput } from "@/components/react-hook-form/form.input";
+import Link from "next/link";
+import { useAuth } from "@/contexts/auth";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/toast";
 
 const loginSchema = z.object({
-  email: z.string().email(validationErrors.INVALID_VALUE('Email')),
-  password: z.string().min(6, validationErrors.SIZE_ERROR('Senha', 6)),
-})
+  email: z.string().email(validationErrors.INVALID_VALUE("Email")),
+  password: z.string().min(6, validationErrors.SIZE_ERROR("Senha", 6)),
+});
 
-type LoginFormData = z.infer<typeof loginSchema>
+type LoginFormData = z.infer<typeof loginSchema>;
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"form">) {
-  const { showToast } = useToast()
+  const { showToast } = useToast();
 
-  const { login } = useAuth()
+  const { login } = useAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const {
-    handleSubmit,
-    control
-  } = useForm<LoginFormData>({
+  const { handleSubmit, control } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
-  })
+  });
 
-  const handleLogin = React.useCallback(async (data: LoginFormData) => {
-    try {
-      const user = await login(data.email, data.password)
+  const handleLogin = React.useCallback(
+    async (data: LoginFormData) => {
+      try {
+        const user = await login(data.email, data.password);
 
-      router.push('/dashboard')
+        router.push("/dashboard");
 
-      showToast('success', { title: `Bem-vindo(a) ${user.name}` })
-    } catch (error) {
-      console.error(error)
-      showToast('error', { title: "Credenciais inválidas" })
-    }
-  }, [login, router, showToast])
+        showToast("success", { title: `Bem-vindo(a) ${user.name}` });
+      } catch (error) {
+        console.error(error);
+        showToast("error", { title: "Credenciais inválidas" });
+      }
+    },
+    [login, router, showToast]
+  );
 
   return (
     <form
@@ -77,11 +77,7 @@ export function LoginForm({
               Esqueceu a senha?
             </Link>
           </div>
-          <FormInput
-            name="password"
-            type="password"
-            control={control}
-          />
+          <FormInput name="password" type="password" control={control} />
         </div>
         <Button type="submit" className="w-full">
           Entrar
@@ -94,5 +90,5 @@ export function LoginForm({
         </Link>
       </div>
     </form>
-  )
+  );
 }
