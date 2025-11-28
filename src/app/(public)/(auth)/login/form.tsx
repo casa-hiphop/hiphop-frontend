@@ -40,7 +40,7 @@ export function LoginForm({
 
   const handleLogin = React.useCallback(async (data: LoginFormData) => {
     try {
-      const user = await login(data.email, data.password)
+      const { user } = await login(data.email, data.password)
 
       router.push('/dashboard')
 
