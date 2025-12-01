@@ -29,8 +29,11 @@ const formatTelefone = (value: string) => {
   if (value) {
     const cleanedValue = value?.replace(/\D/g, '')
 
-    const isCelular = cleanedValue?.length === 11
-    const match = cleanedValue?.match(
+    // Limita a 11 dígitos (máximo para celular brasileiro)
+    const limitedValue = cleanedValue.slice(0, 11)
+
+    const isCelular = limitedValue.length === 11
+    const match = limitedValue.match(
       isCelular
         ? /^(\d{0,2})(\d{0,5})(\d{0,4})$/
         : /^(\d{0,2})(\d{0,4})(\d{0,4})$/,
@@ -38,11 +41,11 @@ const formatTelefone = (value: string) => {
 
     if (match) {
       const formattedValue = `${match[1] ? `(${match[1]}` : ''}${match[2] ? `) ${match[2]}` : ''
-        }${match[3] ? ` ${match[3]}` : ''}`
+        }${match[3] ? `-${match[3]}` : ''}`
 
       return formattedValue
     } else {
-      return cleanedValue
+      return limitedValue
     }
   }
 

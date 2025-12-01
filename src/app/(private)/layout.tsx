@@ -1,7 +1,7 @@
 'use client'
 
-import { SiteHeader } from "@/components/header";
-import { AppSidebar } from "@/components/sidebar";
+import { SiteHeader } from "@/components/header/index";
+import { AppSidebar } from "@/components/sidebar/index";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function PrivateLayout({

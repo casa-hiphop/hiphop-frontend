@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/toast";
-import { Eye, EyeOff } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().email(validationErrors.INVALID_VALUE("Email")),
@@ -31,8 +30,6 @@ export function LoginForm({
   const { login } = useAuth();
 
   const router = useRouter();
-
-  const [showPassword, setShowPassword] = React.useState(false);
 
   const { handleSubmit, control } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -80,26 +77,7 @@ export function LoginForm({
               Esqueceu a senha?
             </Link>
           </div>
-          <div className="relative">
-            <FormInput
-              name="password"
-              type={showPassword ? "text" : "password"}
-              control={control}
-              className="pr-10"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-2.5 text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-sm p-1"
-              aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
-            </button>
-          </div>
+          <FormInput name="password" type="password" control={control} />
         </div>
         <Button type="submit" className="w-full">
           Entrar
