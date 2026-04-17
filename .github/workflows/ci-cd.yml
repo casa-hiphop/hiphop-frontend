@@ -9,7 +9,7 @@ on:
 # Variáveis de ambiente globais
 env:
   PROJECT_NAME: hiphop-frontend
-  PRODUCTION_DEPLOY_PATH: /home/deploy/production/hiphop-frontend
+  PRODUCTION_DEPLOY_PATH: /home/ubuntu/production/hiphop-frontend
 
 jobs:
   # Job para testes e validação de código
