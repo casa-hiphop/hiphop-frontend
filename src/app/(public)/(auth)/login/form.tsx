@@ -47,7 +47,9 @@ export function LoginForm({
         showToast("success", { title: `Bem-vindo(a) ${user.name}` });
       } catch (error) {
         console.error(error);
-        showToast("error", { title: "Credenciais inválidas" });
+        const message =
+          error instanceof Error ? error.message : "Não foi possível entrar. Tente de novo.";
+        showToast("error", { title: message });
       }
     },
     [login, router, showToast]
@@ -95,12 +97,6 @@ export function LoginForm({
           <Button type="submit" className="w-full">
             Entrar
           </Button>
-        </div>
-        <div className="text-center text-sm">
-          Ainda não tem uma conta?{" "}
-          <Link href="/register" className="underline underline-offset-4">
-            Cadastre-se
-          </Link>
         </div>
       </form>
     </div>

@@ -47,25 +47,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [router])
 
   const login = useCallback(async (email: string, password: string): Promise<IUserLogged> => {
-    try {
-      const data = await api.auth.login(email, password)
-
-      if (!data?.token) throw new Error("Token not provided")
-
-      localStorage.setItem("token", data.token)
-
-      const appName = process.env.NEXT_PUBLIC_APP_NAME
-      if (!appName) throw new Error("App name not defined")
-
-      localStorage.setItem(appName, JSON.stringify(data.user))
-
-      setUser(data)
-
-      return data
-    } catch (error) {
-      console.log(error)
-      throw new Error("Login failed")
+    const appName = process.env.NEXT_PUBLIC_APP_NAME?.trim()
+    if (!appName) {
+      throw new Error(
+        "Defina NEXT_PUBLIC_APP_NAME no .env.local (ex.: casa-hiphop-web) e reinicie o servidor.",
+      )
     }
+
+    const data = await api.auth.login(email, password)
+
+    if (!data?.token) {
+      throw new Error("Resposta da API sem token. Verifique o formato do POST /login.")
+    }
+
+    localStorage.setItem("token", data.token)
+    localStorage.setItem(appName, JSON.stringify(data.user))
+
+    const payload: IUserLogged = {
+      token: data.token,
+      user: data.user,
+    }
+
+    setUser(payload)
+
+    return payload
   }, [])
 
   const fetchMe = useCallback(

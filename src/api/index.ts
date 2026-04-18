@@ -24,6 +24,15 @@ export type Fetcher = <T>(params: IFetcherProps) => Promise<T>;
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+/** Rotas em que não devemos enviar JWT (login/cadastro/recuperação com token antigo no storage). */
+function shouldSkipBearer(url: string, method: string): boolean {
+  if (url === "/login") return true;
+  if (url.startsWith("/forgot-password")) return true;
+  if (url.startsWith("/reset-password")) return true;
+  if (url === "/users" && method === "POST") return true;
+  return false;
+}
+
 class Api {
   private fetcher = async <T>({
     url,
@@ -32,6 +41,12 @@ class Api {
     file,
     responseType = "json",
   }: IFetcherProps): Promise<T> => {
+    if (!apiUrl) {
+      throw new Error(
+        "NEXT_PUBLIC_API_URL não está definida. Adicione no .env.local e reinicie o next dev.",
+      );
+    }
+
     const headers: HeadersInit = {};
     let finalBody: BodyInit | undefined;
 
@@ -54,7 +69,7 @@ class Api {
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-    if (token) {
+    if (token && !shouldSkipBearer(url, method)) {
       headers["Authorization"] = `Bearer ${token}`;
     }
 
