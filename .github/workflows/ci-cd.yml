@@ -11,6 +11,7 @@ env:
   PROJECT_NAME: hiphop-frontend
   CONTAINER_NAME: hiphop-frontend
   APP_PORT: 3000
+  PRODUCTION_DEPLOY_PATH: /home/ubuntu/production/hiphop-frontend
 
 jobs:
   # Job para testes e validação de código
@@ -46,12 +47,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Preparar diretório hiphop-frontend para build
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p hiphop-frontend
+          rsync -a --delete --exclude 'hiphop-frontend' ./ ./hiphop-frontend/
+
       - name: Build e push da imagem para o Docker Hub
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./hiphop-frontend
+          file: ./hiphop-frontend/Dockerfile
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest
@@ -73,6 +80,12 @@ jobs:
         run: |
           ssh ${{ secrets.SERVER_USER_PRODUCTION }}@${{ secrets.SERVER_HOST_PRODUCTION }} "
             IMAGE_NAME='${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}:latest'
+            ENV_FILE='${{ env.PRODUCTION_DEPLOY_PATH }}/.env'
+            mkdir -p ${{ env.PRODUCTION_DEPLOY_PATH }}
+            if [ ! -f \$ENV_FILE ]; then
+              echo 'Arquivo .env não encontrado em' \$ENV_FILE
+              exit 1
+            fi
             echo '${{ secrets.DOCKERHUB_TOKEN }}' | docker login -u '${{ secrets.DOCKERHUB_USERNAME }}' --password-stdin
             docker pull \$IMAGE_NAME
             docker stop ${{ env.CONTAINER_NAME }} || true
@@ -80,6 +93,7 @@ jobs:
             docker run -d \
               --name ${{ env.CONTAINER_NAME }} \
               --restart always \
+              --env-file \$ENV_FILE \
               -p ${{ env.APP_PORT }}:${{ env.APP_PORT }} \
               \$IMAGE_NAME
           "
